@@ -1,19 +1,19 @@
 import { NextFunction, Request, Response } from "express";
-import { UserModel, userDTO } from "./../user/User.Model";
-import { Mensage } from "./../status/IMensage";
+import { UserModel, userDTO } from "../user/User.Model";
+import Mensage  from "../status/Mensage";
 
 
 export class CheckValidator {
     async checkValidator (req: Request, resp: Response, next: NextFunction) {
         const user: userDTO = req.body
         if (user.mail === null) {
-            return resp.status(400).json(new Mensage('User name can not be null', user, false))
+            return resp.status(400).json(new Mensage('Mail can not be null', user, false))
         }
         if (user.password === null) {
             return resp.status(400).json(new Mensage('Password  can not be null', user, false))
         }
         if (user.mail === '') {
-            return resp.status(400).json(new Mensage('User name can not be empty', user, false))
+            return resp.status(400).json(new Mensage('Mail can not be empty', user, false))
         }
         if (user.password === '') {
             return resp.status(400).json(new Mensage('Password  can not be empty', user, false))
