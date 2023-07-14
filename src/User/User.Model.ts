@@ -7,7 +7,7 @@ import { timeStamp } from "console"
 
 
 export interface userDTO {
-    id? : string
+    id : string
     mail: string
     password: string
     createdAt: string
@@ -16,13 +16,16 @@ export interface userDTO {
 
 
 export class UserModel extends Model<userDTO>{
-    declare id? : string | undefined
+    declare id : string
     declare mail: string
+    declare password: string | undefined
 }
 
 UserModel.init({
+    
     id: {
-        type: DataTypes.STRING,
+
+        type: DataTypes.UUIDV4,
         allowNull: false,
         primaryKey: true
     },

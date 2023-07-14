@@ -7,5 +7,6 @@ class Mensage {
         this.mensage = mensage
         this.body = body
         this.validation = validation
+    }   
 }
-}
+export default Mensage
