@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { UserModel, userDTO } from "../user/User.Model";
 import Mensage  from "../status/Mensage";
+import { contactDTO } from "../contact/Contact.Model";
 
 
 export class CheckValidator {
@@ -51,7 +52,7 @@ export class UserValidator {
 }
 
 
-/*export class ContactValidator {
+export class ContactValidator {
     async contactValidator(req: Request, resp: Response, next: NextFunction) {
         const user = <contactDTO>req.body
         if (user.fullName === '') {
@@ -68,4 +69,5 @@ export class UserValidator {
             return resp.status(400).json(new Mensage("Number can not be empty", user, false))
         }
         next()
-    */
+    }
+}

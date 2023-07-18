@@ -4,6 +4,7 @@ import { DataTypes, Model } from "sequelize"
 import sequelize from "sequelize/types/sequelize"
 import db from "../database"
 import { timeStamp } from "console"
+import { ContactModel } from "../contact/Contact.Model"
 
 
 export interface userDTO {
@@ -25,7 +26,7 @@ UserModel.init({
     
     id: {
 
-        type: DataTypes.UUIDV4,
+        type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true
     },
@@ -36,6 +37,7 @@ UserModel.init({
         
 
     },
+
     password: {
         type: DataTypes.STRING,
         allowNull: false
@@ -60,3 +62,11 @@ UserModel.init({
     timestamps: true
 })
 
+UserModel.hasOne(ContactModel,{
+     sourceKey : 'id',
+     as : 'Contact'
+})
+
+ContactModel.belongsTo(UserModel,{
+    targetKey : 'id'
+})

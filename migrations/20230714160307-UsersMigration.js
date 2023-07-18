@@ -6,39 +6,48 @@ const { QueryTypes, DataTypes } = require('sequelize');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
+
       id: {
-        type: DataTypes.UUIDV4,
+        type: DataTypes.UUID,
         allowNull: false,
-        primaryKey: true,
+        primaryKey:true
 
-        mail: {
-          type: DataTypes.STRING,
-          unique: true,
-          allowNull: false
-          
-        },
-        password: {
-          type: DataTypes.STRING,
-          allowNull: false
+      },
+
+      mail: {
+        type: DataTypes.STRING,
+        uniqueTwo: true,
+        allowNull: false
+
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
 
 
-        },
-        createdAt: {
-          type: DataTypes.DATE,
-          allowNull: false
+      },
+      contact : {
+        type : DataTypes.STRING,
+        allowNull:false
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false
 
-        },
-        updatedAt: {
+      },
+      updatedAt: {
 
-          type: DataTypes.DATE,
-          allowNull: false
+        type: DataTypes.DATE,
+        allowNull: false
 
-        }
-      }})
-
+      }
+    })
   },
+
+
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropAllTables('Users')
+
   }
-};
+}
