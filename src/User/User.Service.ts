@@ -4,6 +4,9 @@ import bcypt from "bcrypt"
 import express, { Router, Request, Response } from "express";
 import {CheckValidator, UserValidator}  from "../checkValidator/Checkvalidator";
 import  Mensage  from "../status/Mensage";
+import { Model } from "sequelize";
+import { ContactModel } from "../contact/Contact.Model";
+import { ADDRCONFIG } from "dns";
 
 
 const userService = Router()
@@ -31,7 +34,7 @@ userService.post('/create', validator.checkValidator,userValidator.userValidator
 })
 
 userService.get('/find', async (req: Request, resp: Response) => {
-    return resp.json(await UserModel.findAll())
+    return resp.json(await UserModel.findAll({include : 'contact'}))
 })
 
 export default userService
